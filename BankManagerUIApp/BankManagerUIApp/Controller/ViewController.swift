@@ -7,7 +7,14 @@
 import UIKit
 
 class ViewController: UIViewController {
-    let mainView: MainView = MainView()
+    let mainView: MainView = {
+        let view = MainView()
+        view.addButtonAction(
+            addCustomer: #selector(addCustomer),
+            clearCustomer: #selector(clearCustomer)
+            )
+        return view
+    }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -16,7 +23,6 @@ class ViewController: UIViewController {
     
     func configureLayout() {
         view.addSubview(mainView)
-        
         let safeArea = view.safeAreaLayoutGuide
         
         NSLayoutConstraint.activate([
@@ -25,6 +31,14 @@ class ViewController: UIViewController {
             mainView.topAnchor.constraint(equalTo: safeArea.topAnchor),
             mainView.bottomAnchor.constraint(equalTo: safeArea.bottomAnchor)
         ])
+    }
+    
+    @objc func addCustomer() {
+        print("추가~~")
+    }
+    
+    @objc func clearCustomer() {
+        print("초기화~~")
     }
 }
 

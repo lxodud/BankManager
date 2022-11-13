@@ -12,7 +12,6 @@ final class BankButtonView: UIView {
         let button = UIButton()
         button.setTitle("고객 10명 추가", for: .normal)
         button.setTitleColor(UIColor.systemBlue, for: .normal)
-        button.addTarget(self, action: #selector(addCustomer), for: .touchUpInside)
         return button
     }()
     
@@ -20,7 +19,6 @@ final class BankButtonView: UIView {
         let button = UIButton()
         button.setTitle("초기화", for: .normal)
         button.setTitleColor(UIColor.red, for: .normal)
-        button.addTarget(self, action: #selector(clearCustomer), for: .touchUpInside)
         return button
     }()
     
@@ -56,11 +54,8 @@ final class BankButtonView: UIView {
         ])
     }
     
-    @objc private func addCustomer() {
-        print("10명 추가~")
-    }
-    
-    @objc private func clearCustomer() {
-        print("전부 초기화")
+    func addButtonAction(addCustomer: Selector, clearCustomer: Selector) {
+        addCustomerButton.addTarget(nil, action: addCustomer, for: .touchUpInside)
+        clearButton.addTarget(nil, action: clearCustomer, for: .touchUpInside)
     }
 }

@@ -79,4 +79,8 @@ final class MainView: UIView {
             workingScrollView.bottomAnchor.constraint(equalTo: safeArea.bottomAnchor)
         ])
     }
+    
+    func addButtonAction(addCustomer: Selector, clearCustomer: Selector) {
+        bankButtonView.addButtonAction(addCustomer: addCustomer, clearCustomer: clearCustomer)
+    }
 }
