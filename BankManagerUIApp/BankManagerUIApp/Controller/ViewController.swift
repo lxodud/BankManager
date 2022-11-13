@@ -7,21 +7,24 @@
 import UIKit
 
 class ViewController: UIViewController {
-    let mainView: MainView = {
+    private let mainView: MainView = {
         let view = MainView()
         view.addButtonAction(
             addCustomer: #selector(addCustomer),
             clearCustomer: #selector(clearCustomer)
-            )
+        )
         return view
     }()
+    
+    private let bank: Bank = Bank(depositClerks: 2, loanClerks: 1)
+    private lazy var bankManager: BankManager = BankManager(bank: bank)
     
     override func viewDidLoad() {
         super.viewDidLoad()
         configureLayout()
     }
     
-    func configureLayout() {
+    private func configureLayout() {
         view.addSubview(mainView)
         let safeArea = view.safeAreaLayoutGuide
         
@@ -33,8 +36,15 @@ class ViewController: UIViewController {
         ])
     }
     
-    @objc func addCustomer() {
-        print("추가~~")
+    @objc func addCustomer() throws {
+        for number in 1...10 {
+            guard let banking: BankService = BankService.allCases.randomElement() else {
+                throw BankError.invalidService
+            }
+            
+            let customer: Customer = Customer(waitingNumber: number, banking: banking)
+            mainView.addNewCustomer(customer: customer)
+        }
     }
     
     @objc func clearCustomer() {
