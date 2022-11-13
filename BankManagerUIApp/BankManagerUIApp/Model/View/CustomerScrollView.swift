@@ -18,13 +18,6 @@ class CustomerQueueScrollView: UIScrollView {
         return stackView
     }()
     
-    let customerLabel: UILabel = {
-        let label = UILabel()
-        label.text = "오예~"
-        label.textColor = .black
-        return label
-    }()
-    
     override init(frame: CGRect) {
         super.init(frame: frame)
         configureLayout()
@@ -48,13 +41,8 @@ class CustomerQueueScrollView: UIScrollView {
     }
     
     func addCustomerInformation() {
-        for _ in 1...50 {
-            let customerLabel: UILabel = {
-                let label = UILabel()
-                label.text = "오예~"
-                label.textColor = .black
-                return label
-            }()
+        for i in 1...50 {
+            let customerLabel = CustomerLabelView(waitingNumber: String(i), bankServiceLabel: "대출")
             contentStackView.addArrangedSubview(customerLabel)
         }
     }
