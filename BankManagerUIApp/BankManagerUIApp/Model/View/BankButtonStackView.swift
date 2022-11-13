@@ -7,7 +7,7 @@
 
 import UIKit
 
-final class BankButtonView: UIView {
+final class BankButtonStackView: UIStackView {
     private let addCustomerButton: UIButton = {
         let button = UIButton()
         button.setTitle("고객 10명 추가", for: .normal)
@@ -22,36 +22,27 @@ final class BankButtonView: UIView {
         return button
     }()
     
-    private let buttonStackView: UIStackView = {
-        let stackView = UIStackView()
-        stackView.axis = .horizontal
-        stackView.alignment = .fill
-        stackView.distribution = .fillEqually
-        stackView.translatesAutoresizingMaskIntoConstraints = false
-        return stackView
-    }()
-    
     override init(frame: CGRect) {
         super.init(frame: frame)
         translatesAutoresizingMaskIntoConstraints = false
-        configureLayout()
+        configureAttributes()
+        configureSubview()
     }
     
-    required init?(coder: NSCoder) {
+    required init(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
-    private func configureLayout() {
-        buttonStackView.addArrangedSubview(addCustomerButton)
-        buttonStackView.addArrangedSubview(clearButton)
-        addSubview(buttonStackView)
-        
-        NSLayoutConstraint.activate([
-            buttonStackView.leadingAnchor.constraint(equalTo: leadingAnchor),
-            buttonStackView.trailingAnchor.constraint(equalTo: trailingAnchor),
-            buttonStackView.topAnchor.constraint(equalTo: topAnchor),
-            buttonStackView.bottomAnchor.constraint(equalTo: bottomAnchor)
-        ])
+    private func configureAttributes() {
+        axis = .horizontal
+        alignment = .fill
+        distribution = .fillEqually
+        translatesAutoresizingMaskIntoConstraints = false
+    }
+    
+    private func configureSubview() {
+        addArrangedSubview(addCustomerButton)
+        addArrangedSubview(clearButton)
     }
     
     func addButtonAction(addCustomer: Selector, clearCustomer: Selector) {

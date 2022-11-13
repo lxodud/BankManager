@@ -42,8 +42,6 @@ class CustomerQueueScrollView: UIScrollView {
     
     func addCustomerInformation() {
         for i in 1...50 {
-            let customerLabel = CustomerLabelView(waitingNumber: String(i), bankServiceLabel: "대출")
-            contentStackView.addArrangedSubview(customerLabel)
         }
     }
 }

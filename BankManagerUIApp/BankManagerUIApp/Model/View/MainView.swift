@@ -8,8 +8,8 @@
 import UIKit
 
 final class MainView: UIView {
-    private let bankButtonView: BankButtonView = BankButtonView()
-    private let bankServiceView: BankServiceView = BankServiceView()
+    private let bankButtonStackView: BankButtonStackView = BankButtonStackView()
+    private let bankServiceStackView: BankServiceStackView = BankServiceStackView()
     
     private let allStackView: UIStackView = {
         let stackView = UIStackView()
@@ -53,9 +53,9 @@ final class MainView: UIView {
     }
     
     private func configureLayout() {
-        allStackView.addArrangedSubview(bankButtonView)
+        allStackView.addArrangedSubview(bankButtonStackView)
         allStackView.addArrangedSubview(timerLabel)
-        allStackView.addArrangedSubview(bankServiceView)
+        allStackView.addArrangedSubview(bankServiceStackView)
         
         addSubview(allStackView)
         addSubview(waitingScrollView)
@@ -81,6 +81,6 @@ final class MainView: UIView {
     }
     
     func addButtonAction(addCustomer: Selector, clearCustomer: Selector) {
-        bankButtonView.addButtonAction(addCustomer: addCustomer, clearCustomer: clearCustomer)
+        bankButtonStackView.addButtonAction(addCustomer: addCustomer, clearCustomer: clearCustomer)
     }
 }
